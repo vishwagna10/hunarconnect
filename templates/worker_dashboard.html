@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('WORKER_DASHBOARD') }}</h1>
+
+<div class="actions-row">
+  <a href="{{ url_for('job_feed') }}" class="btn btn-secondary">{{ _('JOB_FEED') }}</a>
+  <a href="{{ url_for('edit_profile') }}" class="btn btn-outline">{{ _('EDIT_PROFILE') }}</a>
+</div>
+
+<h2 class="section-title">{{ _('ACTIVE_JOBS') }}</h2>
+{% if not jobs %}
+  <p class="muted">{{ _('NO_JOBS_YET') }}</p>
+{% endif %}
+{% for job in jobs %}
+<div class="job-card">
+  <div>
+    <strong>{{ _(skill_key_map.get(job['skill'], job['skill'])) }}</strong>
+    <div class="muted">{{ job['owner_business'] or job['owner_name'] }} · {{ job['area'] }}</div>
+  </div>
+  <span class="status-badge status-{{ job['status'] }}">
+    {% if job['status'] == 'active' %}{{ _('STATUS_ACTIVE') }}
+    {% elif job['status'] == 'completed' %}{{ _('STATUS_COMPLETED') }}
+    {% else %}{{ job['status'] }}{% endif %}
+  </span>
+  <div class="actions-row">
+    {% if job['status'] == 'active' %}
+      <form method="POST" action="{{ url_for('cancel_job', job_id=job['id']) }}"
+            onsubmit="return confirm('{{ _('CANCEL_CONFIRM') }}');">
+        <button type="submit" class="btn btn-danger btn-sm">{{ _('CANCEL_JOB') }}</button>
+      </form>
+    {% elif job['status'] == 'completed' and job['id'] not in already_rated %}
+      <a href="{{ url_for('rate_owner', job_id=job['id']) }}" class="btn btn-primary btn-sm">{{ _('RATE_OWNER_PROMPT') }}</a>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

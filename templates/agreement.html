@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('WORK_AGREEMENT') }}</h1>
+<p class="tagline">{{ _('AGREEMENT_INTRO') }}</p>
+
+<div class="card">
+  <p><strong>{{ _('SKILL') }}:</strong> {{ _(skill_key_map.get(job['skill'], job['skill'])) }}</p>
+  <p><strong>{{ _('LOCATION') }}:</strong> {{ job['area'] }}</p>
+  <p><strong>{{ _('DURATION') }}:</strong> {{ job['duration'] }}</p>
+  <p><strong>{{ _('RATE') }}:</strong> ₹{{ rate|int if rate else '-' }} / {{ _('PER_DAY') if job['price_type'] == 'day' else _('PER_PIECE') }}</p>
+  <p><strong>{{ _('TRIAL_JOB') }}:</strong> {{ _('YES') if job['trial'] else _('NO') }}</p>
+  <hr class="divider">
+  <p><strong>{{ worker['name'] }}</strong> · {{ worker['area'] }}</p>
+
+  <form method="POST">
+    <button type="submit" class="btn btn-primary btn-block">{{ _('CONFIRM_HIRE') }}</button>
+  </form>
+</div>
+{% endblock %}

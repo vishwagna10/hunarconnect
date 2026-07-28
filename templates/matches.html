@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('MATCHES_FOR') }} {{ _(skill_key_map.get(job['skill'], job['skill'])) }}</h1>
+<p class="muted">{{ job['area'] }} · {{ job['duration'] }}</p>
+
+{% if not candidates %}
+  <p class="muted">{{ _('NO_MATCHES') }}</p>
+{% endif %}
+
+{% for c in candidates %}
+<div class="worker-card">
+  <div>
+    <div class="name">
+      {{ c.row['name'] }}
+      {% if c.interested %}<span class="tag-interested">{{ _('INTERESTED_TAG') }}</span>{% endif %}
+    </div>
+    <div class="meta">
+      {{ c.row['area'] }} ·
+      {% for slug, key in skill_list %}{% if slug in c.row['skills'].split(',') %}{{ _(key) }} {% endif %}{% endfor %}
+      · ₹{{ c.row['day_rate']|int if c.row['day_rate'] else '-' }}/{{ _('PER_DAY') }}
+      {% if c.row['piece_rate'] %} · ₹{{ c.row['piece_rate']|int }}/{{ _('PER_PIECE') }}{% endif %}
+      · ★ {{ c.avg if c.avg else '-' }}
+    </div>
+    <div class="meta">
+      {% if c.badge_kind == 'good' %}
+        <span class="badge-good">{{ _('RELIABILITY_GOOD', n=c.badge_n) }}</span>
+      {% elif c.badge_kind == 'warning' %}
+        <span class="badge-warning">{{ _('RELIABILITY_WARNING') }}</span>
+      {% else %}
+        <span class="badge-new">{{ _('RELIABILITY_NEW') }}</span>
+      {% endif %}
+    </div>
+  </div>
+  <a href="{{ url_for('connect', job_id=job['id'], worker_id=c.row['id']) }}" class="btn btn-primary btn-sm">{{ _('CONNECT') }}</a>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('REGISTER_AS_OWNER') }}</h1>
+
+<form method="POST" data-persist-key="register_owner" class="card">
+  <label>{{ _('NAME') }}</label>
+  <input type="text" name="name" required>
+
+  <label>{{ _('BUSINESS_NAME') }}</label>
+  <input type="text" name="business_name" required>
+
+  <label>{{ _('PHONE_NUMBER') }}</label>
+  <input type="tel" name="phone" required>
+
+  <label>{{ _('EMAIL_OPTIONAL') }}</label>
+  <input type="email" name="email">
+
+  <label>{{ _('PASSWORD') }}</label>
+  <input type="password" name="password" required>
+
+  <label>{{ _('AREA_LOCALITY') }}</label>
+  <input type="text" name="area" required>
+
+  <button type="submit" class="btn btn-primary btn-block">{{ _('REGISTER') }}</button>
+</form>
+
+<p class="login-hint"><a href="{{ url_for('login') }}">{{ _('ALREADY_REGISTERED') }}</a></p>
+{% endblock %}

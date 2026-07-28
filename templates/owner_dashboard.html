@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('OWNER_DASHBOARD') }}</h1>
+
+<div class="card">
+  <h3>{{ _('POST_A_JOB') }}</h3>
+  <a href="{{ url_for('post_job') }}" class="btn btn-secondary">{{ _('POST_A_JOB') }}</a>
+</div>
+
+<h2 class="section-title">{{ _('MY_JOBS') }}</h2>
+{% if not jobs %}
+  <p class="muted">{{ _('NO_JOBS_YET') }}</p>
+{% endif %}
+{% for job in jobs %}
+<div class="job-card">
+  <div>
+    <strong>{{ _(skill_key_map.get(job['skill'], job['skill'])) }}</strong>
+    <div class="muted">{{ job['area'] }} · {{ job['duration'] }}</div>
+  </div>
+  <span class="status-badge status-{{ job['status'] }}">
+    {% if job['status'] == 'open' %}{{ _('STATUS_OPEN') }}
+    {% elif job['status'] == 'active' %}{{ _('STATUS_ACTIVE') }}
+    {% elif job['status'] == 'completed' %}{{ _('STATUS_COMPLETED') }}
+    {% else %}{{ _('STATUS_NEEDS_ATTENTION') }}{% endif %}
+  </span>
+  <div class="actions-row">
+    {% if job['status'] == 'open' %}
+      <a href="{{ url_for('matches', job_id=job['id']) }}" class="btn btn-outline btn-sm">{{ _('VIEW_MATCHES') }}</a>
+    {% elif job['status'] == 'active' %}
+      <a href="{{ url_for('complete_job', job_id=job['id']) }}" class="btn btn-primary btn-sm">{{ _('MARK_COMPLETE') }}</a>
+    {% elif job['status'] == 'needs_attention' %}
+      <a href="{{ url_for('find_backup', job_id=job['id']) }}" class="btn btn-secondary btn-sm">{{ _('FIND_BACKUP') }}</a>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

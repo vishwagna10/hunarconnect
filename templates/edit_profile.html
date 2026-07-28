@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('EDIT_PROFILE') }}</h1>
+
+<form method="POST" class="card">
+  <label>{{ _('AREA_LOCALITY') }}</label>
+  <input type="text" name="area" value="{{ user['area'] }}" required>
+
+  <label>{{ _('SKILLS') }}</label>
+  <div class="checkbox-grid">
+    {% set my_skills = profile['skills'].split(',') %}
+    {% for slug, key in skill_list %}
+    <label><input type="checkbox" name="skills" value="{{ slug }}" {% if slug in my_skills %}checked{% endif %}> {{ _(key) }}</label>
+    {% endfor %}
+  </div>
+
+  <label>{{ _('ABOUT_EXPERIENCE') }}</label>
+  <textarea name="about">{{ profile['about'] }}</textarea>
+
+  <label>{{ _('DAY_RATE') }}</label>
+  <input type="number" name="day_rate" value="{{ profile['day_rate']|int if profile['day_rate'] else '' }}" min="0">
+
+  <label>{{ _('PIECE_RATE_OPTIONAL') }}</label>
+  <input type="number" name="piece_rate" value="{{ profile['piece_rate']|int if profile['piece_rate'] else '' }}" min="0">
+
+  <label>{{ _('LANGUAGES_SPOKEN') }}</label>
+  {% set my_langs = profile['languages_spoken'].split(',') %}
+  <div class="checkbox-grid">
+    {% for code, name in LANGUAGES %}
+    <label><input type="checkbox" name="languages_spoken" value="{{ code }}" {% if code in my_langs %}checked{% endif %}> {{ name }}</label>
+    {% endfor %}
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block">{{ _('SAVE_CHANGES') }}</button>
+</form>
+
+<p class="login-hint"><a href="{{ url_for('change_language') }}">{{ _('CHANGE_LANGUAGE') }}</a></p>
+{% endblock %}

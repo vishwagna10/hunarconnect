@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('APP_NAME') }}</h1>
+<p class="tagline">{{ _('TAGLINE') }}</p>
+
+<div class="role-grid">
+  <a href="{{ url_for('register_owner') }}" class="role-card owner">
+    <h3>{{ _('IM_BUSINESS_OWNER') }}</h3>
+    <p>{{ _('OWNER_TAGLINE') }}</p>
+  </a>
+  <a href="{{ url_for('register_worker') }}" class="role-card worker">
+    <h3>{{ _('IM_SKILLED_WORKER') }}</h3>
+    <p>{{ _('WORKER_TAGLINE') }}</p>
+  </a>
+</div>
+
+<p class="login-hint"><a href="{{ url_for('login') }}">{{ _('ALREADY_REGISTERED') }}</a></p>
+{% endblock %}

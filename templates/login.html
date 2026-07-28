@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('LOG_IN') }}</h1>
+
+<form method="POST" class="card">
+  <label>{{ _('PHONE_NUMBER') }}</label>
+  <input type="tel" name="phone" required autofocus>
+
+  <label>{{ _('PASSWORD') }}</label>
+  <input type="password" name="password" required>
+
+  <button type="submit" class="btn btn-primary btn-block">{{ _('LOG_IN') }}</button>
+</form>
+{% endblock %}

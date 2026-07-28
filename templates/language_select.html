@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HunarConnect</title>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/favicon-32.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" onclick="return false;">
+    <img src="{{ url_for('static', filename='icons/icon-192.png') }}" alt="HunarConnect" class="brand-icon">
+    <span>HunarConnect</span>
+  </a>
+</header>
+<main class="container">
+  <div class="card">
+    <h1>Choose your language</h1>
+    <p class="tagline">भाषा चुनें · భాష ఎంచుకోండి · மொழியைத் தேர்ந்தெடுக்கவும் · ভাষা নির্বাচন করুন · The app will run only in the language you pick here.</p>
+
+    <form method="POST" action="{{ url_for('select_language', next=request.args.get('next', '')) }}">
+      <div class="language-grid">
+        {% for code, name in LANGUAGES %}
+        <button type="submit" name="lang" value="{{ code }}" class="lang-option">{{ name }}</button>
+        {% endfor %}
+      </div>
+    </form>
+  </div>
+</main>
+</body>
+</html>

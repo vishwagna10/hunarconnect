@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('JOB_FEED') }}</h1>
+<p class="tagline">{{ _('MATCHING_JOBS') }}</p>
+
+{% if not jobs %}
+  <p class="muted">{{ _('NO_MATCHES') }}</p>
+{% endif %}
+
+{% for job in jobs %}
+<div class="job-card">
+  <div>
+    <strong>{{ _(skill_key_map.get(job['skill'], job['skill'])) }}</strong>
+    <div class="muted">{{ job['business_name'] or job['owner_name'] }} · {{ job['area'] }} · {{ job['duration'] }}</div>
+  </div>
+  {% if job['id'] in applied_ids %}
+    <span class="tag-interested">{{ _('APPLIED') }}</span>
+  {% else %}
+    <form method="POST" action="{{ url_for('apply_to_job', job_id=job['id']) }}">
+      <button type="submit" class="btn btn-secondary btn-sm">{{ _('APPLY') }}</button>
+    </form>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

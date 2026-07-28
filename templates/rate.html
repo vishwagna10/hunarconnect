@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('MARK_COMPLETE') if target == 'worker' else _('STATUS_COMPLETED') }}</h1>
+
+<div class="card">
+  <p>{{ _('RATE_WORKER_PROMPT') if target == 'worker' else _('RATE_OWNER_PROMPT') }}</p>
+  <p class="muted">{{ other['name'] }}</p>
+
+  <form method="POST">
+    <label>{{ _('STARS') }}</label>
+    <div class="stars-input">
+      <input type="radio" id="s5" name="stars" value="5"><label for="s5">★</label>
+      <input type="radio" id="s4" name="stars" value="4"><label for="s4">★</label>
+      <input type="radio" id="s3" name="stars" value="3"><label for="s3">★</label>
+      <input type="radio" id="s2" name="stars" value="2"><label for="s2">★</label>
+      <input type="radio" id="s1" name="stars" value="1"><label for="s1">★</label>
+    </div>
+
+    <label>{{ _('COMMENT_OPTIONAL') }}</label>
+    <textarea name="comment"></textarea>
+
+    {% if target == 'worker' %}
+    <label class="checkbox-inline">
+      <input type="checkbox" name="dispute" value="1">
+      {{ _('DISPUTE_OPTION') }}
+    </label>
+    {% endif %}
+
+    <div class="actions-row">
+      <button type="submit" class="btn btn-primary">{{ _('SUBMIT_RATING') }}</button>
+      <button type="submit" name="action" value="skip" class="btn btn-outline" formnovalidate>{{ _('SKIP_RATING') }}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _('REGISTER_AS_WORKER') }}</h1>
+
+<form method="POST" data-persist-key="register_worker" class="card">
+  <label>{{ _('NAME') }}</label>
+  <input type="text" name="name" required>
+
+  <label>{{ _('PHONE_NUMBER') }}</label>
+  <input type="tel" name="phone" required>
+
+  <label>{{ _('EMAIL_OPTIONAL') }}</label>
+  <input type="email" name="email">
+
+  <label>{{ _('PASSWORD') }}</label>
+  <input type="password" name="password" required>
+
+  <label>{{ _('AREA_LOCALITY') }}</label>
+  <input type="text" name="area" required>
+
+  <label>{{ _('SKILLS') }}</label>
+  <div class="checkbox-grid">
+    {% for slug, key in skill_list %}
+    <label><input type="checkbox" name="skills" value="{{ slug }}"> {{ _(key) }}</label>
+    {% endfor %}
+  </div>
+
+  <label>{{ _('ABOUT_EXPERIENCE') }}</label>
+  <textarea name="about" placeholder="{{ _('ABOUT_PLACEHOLDER') }}"></textarea>
+
+  <label>{{ _('DAY_RATE') }}</label>
+  <input type="number" name="day_rate" min="0" step="1">
+
+  <label>{{ _('PIECE_RATE_OPTIONAL') }}</label>
+  <input type="number" name="piece_rate" min="0" step="1">
+
+  <label>{{ _('LANGUAGES_SPOKEN') }}</label>
+  <div class="checkbox-grid">
+    {% for code, name in LANGUAGES %}
+    <label><input type="checkbox" name="languages_spoken" value="{{ code }}"> {{ name }}</label>
+    {% endfor %}
+  </div>
+
+  <button type="submit" class="btn btn-secondary btn-block">{{ _('REGISTER') }}</button>
+</form>
+
+<p class="login-hint"><a href="{{ url_for('login') }}">{{ _('ALREADY_REGISTERED') }}</a></p>
+{% endblock %}
