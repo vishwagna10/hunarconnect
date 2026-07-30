@@ -3,18 +3,18 @@
 # HunarConnect i18n strings.
 #
 # STATUS OF TRANSLATIONS:
-#   Fully translated (native-script, reviewed against common usage):
-#     en (English), hi (Hindi), te (Telugu), ta (Tamil), kn (Kannada),
-#     ml (Malayalam), mr (Marathi), bn (Bengali), gu (Gujarati),
-#     pa (Punjabi), ur (Urdu)
+# Fully translated (native-script, reviewed against common usage):
+# en (English), hi (Hindi), te (Telugu), ta (Tamil), kn (Kannada),
+# ml (Malayalam), mr (Marathi), bn (Bengali), gu (Gujarati),
+# pa (Punjabi), ur (Urdu)
 #
-#   Framework-ready but PLACEHOLDER TEXT (English) — selectable in the
-#   language picker, switching works end-to-end, but the actual strings
-#   still need a native speaker to fill in before this can be shipped for
-#   that language:
-#     as (Assamese), bo (Bodo), doi (Dogri), ks (Kashmiri), kok (Konkani),
-#     mai (Maithili), mni (Manipuri), ne (Nepali), or (Odia), sa (Sanskrit),
-#     sat (Santhali), sd (Sindhi)
+# Framework-ready but PLACEHOLDER TEXT (English) — selectable in the
+# language picker, switching works end-to-end, but the actual strings
+# still need a native speaker to fill in before this can be shipped for
+# that language:
+# as (Assamese), bo (Bodo), doi (Dogri), ks (Kashmiri), kok (Konkani),
+# mai (Maithili), mni (Manipuri), ne (Nepali), or (Odia), sa (Sanskrit),
+# sat (Santhali), sd (Sindhi)
 #
 # Every placeholder entry is tagged so it's easy to grep for and replace:
 # search for "# TODO-TRANSLATE" in this file.
@@ -46,6 +46,32 @@ LANGUAGES = [
     ("ur", "Urdu"),
 ]
 
+NATIVE_NAMES = {
+    "en": "English",
+    "as": "অসমীয়া",
+    "bn": "বাংলা",
+    "bo": "बड़ो",
+    "doi": "डोगरी",
+    "gu": "ગુજરાતી",
+    "hi": "हिन्दी",
+    "kn": "ಕನ್ನಡ",
+    "ks": "कॉशुर",
+    "kok": "कोंकणी",
+    "mai": "मैथिली",
+    "ml": "മലയാളം",
+    "mni": "মৈতৈলোন্",
+    "mr": "मराठी",
+    "ne": "नेपाली",
+    "or": "ଓଡ଼ିଆ",
+    "pa": "ਪੰਜਾਬੀ",
+    "sa": "संस्कृतम्",
+    "sat": "ᱥᱟᱱᱛᱟᱲᱤ",
+    "sd": "سنڌي",
+    "ta": "தமிழ்",
+    "te": "తెలుగు",
+    "ur": "اردو",
+}
+
 _KEYS = [
     "APP_NAME", "TAGLINE", "SELECT_LANGUAGE", "SELECT_LANGUAGE_SUB", "CONTINUE",
     "IM_BUSINESS_OWNER", "OWNER_TAGLINE", "IM_SKILLED_WORKER", "WORKER_TAGLINE",
@@ -61,14 +87,14 @@ _KEYS = [
     "CONNECT", "RELIABILITY_GOOD", "RELIABILITY_WARNING", "RELIABILITY_NEW",
     "INTERESTED_TAG", "WORK_AGREEMENT", "AGREEMENT_INTRO", "SKILL", "LOCATION",
     "DURATION", "RATE", "TRIAL_JOB", "YES", "NO", "CONFIRM_HIRE",
-  "ACTIVE_JOBS", "CANCEL_JOB", "CANCEL_CONFIRM", "MARK_COMPLETE",
+    "ACTIVE_JOBS", "CANCEL_JOB", "CANCEL_CONFIRM", "MARK_COMPLETE",
     "RATE_WORKER_PROMPT", "RATE_OWNER_PROMPT", "STARS", "COMMENT_OPTIONAL",
     "DISPUTE_OPTION", "SUBMIT_RATING", "SKIP_RATING", "RATING_SAVED",
     "JOB_FEED", "MATCHING_JOBS", "APPLY", "APPLIED",
     "EDIT_PROFILE", "SAVE_CHANGES", "CHANGE_LANGUAGE", "LOGOUT",
     "WELCOME_BACK", "INVALID_LOGIN", "PHONE_IN_USE", "REGISTRATION_SUCCESS",
     "SK_EMBROIDERY", "SK_TAILORING", "SK_CARPENTRY", "SK_PLUMBING",
-    "SK_ELECTRICAL", "SK_PAINTING", "SK_CATERING", "REQUIRED_FIELD",
+    "SK_ELECTRICAL", "SK_PAINTING", "SK_CATERING", "SK_OTHER", "REQUIRED_FIELD",
 ]
 
 TRANSLATIONS = {}
@@ -172,6 +198,7 @@ TRANSLATIONS["en"] = {
     "SK_ELECTRICAL": "Electrical",
     "SK_PAINTING": "Painting",
     "SK_CATERING": "Catering Help",
+    "SK_OTHER": "Other Skill",
     "REQUIRED_FIELD": "This field is required.",
 }
 
@@ -270,6 +297,7 @@ TRANSLATIONS["hi"] = {
     "SK_ELECTRICAL": "इलेक्ट्रिकल",
     "SK_PAINTING": "पेंटिंग",
     "SK_CATERING": "केटरिंग सहायता",
+    "SK_OTHER": "अन्य कौशल",
     "REQUIRED_FIELD": "यह फ़ील्ड आवश्यक है।",
 }
 
@@ -368,10 +396,9 @@ TRANSLATIONS["te"] = {
     "SK_ELECTRICAL": "ఎలక్ట్రికల్",
     "SK_PAINTING": "పెయింటింగ్",
     "SK_CATERING": "క్యాటరింగ్ సహాయం",
+    "SK_OTHER": "ఇతర నైపుణ్యం",
     "REQUIRED_FIELD": "ఈ ఫీల్డ్ అవసరం.",
 }
-
-# --- Remaining major-language full translations kept compact but complete ---
 
 TRANSLATIONS["ta"] = {
     "APP_NAME": "ஹுனர்கனெக்ட்", "TAGLINE": "உங்கள் அருகில் திறமையான கைகளைக் கண்டறியுங்கள்.",
@@ -406,6 +433,7 @@ TRANSLATIONS["ta"] = {
     "WELCOME_BACK": "மீண்டும் வருக", "INVALID_LOGIN": "தொலைபேசி எண் அல்லது கடவுச்சொல் தவறானது.", "PHONE_IN_USE": "அந்த தொலைபேசி எண் ஏற்கனவே பதிவு செய்யப்பட்டுள்ளது.",
     "REGISTRATION_SUCCESS": "கணக்கு உருவாக்கப்பட்டது!", "SK_EMBROIDERY": "எம்பிராய்டரி", "SK_TAILORING": "தையல்", "SK_CARPENTRY": "தச்சு வேலை",
     "SK_PLUMBING": "குழாய் பணி", "SK_ELECTRICAL": "மின் பணி", "SK_PAINTING": "ஓவியப் பணி", "SK_CATERING": "கேட்டரிங் உதவி",
+    "SK_OTHER": "மற்ற திறமை",
     "REQUIRED_FIELD": "இந்த புலம் அவசியம்.",
 }
 
@@ -441,6 +469,7 @@ TRANSLATIONS["kn"] = {
     "WELCOME_BACK": "ಮತ್ತೆ ಸ್ವಾಗತ", "INVALID_LOGIN": "ಫೋನ್ ಸಂಖ್ಯೆ ಅಥವಾ ಪಾಸ್‌ವರ್ಡ್ ತಪ್ಪಾಗಿದೆ.", "PHONE_IN_USE": "ಆ ಫೋನ್ ಸಂಖ್ಯೆ ಈಗಾಗಲೇ ನೋಂದಾಯಿಸಲಾಗಿದೆ.",
     "REGISTRATION_SUCCESS": "ಖಾತೆ ರಚಿಸಲಾಗಿದೆ!", "SK_EMBROIDERY": "ಕಸೂತಿ", "SK_TAILORING": "ಟೈಲರಿಂಗ್", "SK_CARPENTRY": "ಬಡಗಿ ಕೆಲಸ",
     "SK_PLUMBING": "ಪ್ಲಂಬಿಂಗ್", "SK_ELECTRICAL": "ಎಲೆಕ್ಟ್ರಿಕಲ್", "SK_PAINTING": "ಪೇಂಟಿಂಗ್", "SK_CATERING": "ಕೇಟರಿಂಗ್ ಸಹಾಯ",
+    "SK_OTHER": "ಇತರ ಕೌಶಲ್ಯ",
     "REQUIRED_FIELD": "ಈ ಕ್ಷೇತ್ರ ಅಗತ್ಯವಿದೆ.",
 }
 
@@ -476,6 +505,7 @@ TRANSLATIONS["ml"] = {
     "WELCOME_BACK": "തിരികെ സ്വാഗതം", "INVALID_LOGIN": "ഫോൺ നമ്പർ അല്ലെങ്കിൽ പാസ്‌വേഡ് തെറ്റാണ്.", "PHONE_IN_USE": "ആ ഫോൺ നമ്പർ ഇതിനകം രജിസ്റ്റർ ചെയ്തിട്ടുണ്ട്.",
     "REGISTRATION_SUCCESS": "അക്കൗണ്ട് സൃഷ്ടിച്ചു!", "SK_EMBROIDERY": "എംബ്രോയ്ഡറി", "SK_TAILORING": "തയ്യൽ", "SK_CARPENTRY": "മരപ്പണി",
     "SK_PLUMBING": "പ്ലംബിംഗ്", "SK_ELECTRICAL": "ഇലക്ട്രിക്കൽ", "SK_PAINTING": "പെയിന്റിംഗ്", "SK_CATERING": "കാറ്ററിംഗ് സഹായം",
+    "SK_OTHER": "മറ്റ് വൈദഗ്ധ്യം",
     "REQUIRED_FIELD": "ഈ ഫീൽഡ് ആവശ്യമാണ്.",
 }
 
@@ -511,6 +541,7 @@ TRANSLATIONS["mr"] = {
     "WELCOME_BACK": "परत स्वागत आहे", "INVALID_LOGIN": "फोन नंबर किंवा पासवर्ड चुकीचा आहे.", "PHONE_IN_USE": "तो फोन नंबर आधीच नोंदणीकृत आहे.",
     "REGISTRATION_SUCCESS": "खाते तयार झाले!", "SK_EMBROIDERY": "भरतकाम", "SK_TAILORING": "शिवणकाम", "SK_CARPENTRY": "सुतारकाम",
     "SK_PLUMBING": "प्लंबिंग", "SK_ELECTRICAL": "इलेक्ट्रिकल", "SK_PAINTING": "पेंटिंग", "SK_CATERING": "केटरिंग मदत",
+    "SK_OTHER": "इतर कौशल्य",
     "REQUIRED_FIELD": "हे फील्ड आवश्यक आहे.",
 }
 
@@ -546,6 +577,7 @@ TRANSLATIONS["bn"] = {
     "WELCOME_BACK": "ফিরে আসার জন্য স্বাগতম", "INVALID_LOGIN": "ফোন নম্বর বা পাসওয়ার্ড ভুল।", "PHONE_IN_USE": "এই ফোন নম্বরটি ইতিমধ্যে নিবন্ধিত।",
     "REGISTRATION_SUCCESS": "অ্যাকাউন্ট তৈরি হয়েছে!", "SK_EMBROIDERY": "এমব্রয়ডারি", "SK_TAILORING": "দর্জির কাজ", "SK_CARPENTRY": "কাঠমিস্ত্রির কাজ",
     "SK_PLUMBING": "প্লাম্বিং", "SK_ELECTRICAL": "ইলেকট্রিক্যাল", "SK_PAINTING": "রং করা", "SK_CATERING": "ক্যাটারিং সহায়তা",
+    "SK_OTHER": "অন্যান্য দক্ষতা",
     "REQUIRED_FIELD": "এই ক্ষেত্রটি আবশ্যক।",
 }
 
@@ -581,6 +613,7 @@ TRANSLATIONS["gu"] = {
     "WELCOME_BACK": "પાછા સ્વાગત છે", "INVALID_LOGIN": "ફોન નંબર અથવા પાસવર્ડ ખોટો છે.", "PHONE_IN_USE": "તે ફોન નંબર પહેલેથી નોંધાયેલ છે.",
     "REGISTRATION_SUCCESS": "ખાતું બનાવ્યું!", "SK_EMBROIDERY": "ભરતકામ", "SK_TAILORING": "દરજીકામ", "SK_CARPENTRY": "સુથારીકામ",
     "SK_PLUMBING": "પ્લમ્બિંગ", "SK_ELECTRICAL": "ઇલેક્ટ્રિકલ", "SK_PAINTING": "પેઇન્ટિંગ", "SK_CATERING": "કેટરિંગ મદદ",
+    "SK_OTHER": "અન્ય કુશળતા",
     "REQUIRED_FIELD": "આ ફીલ્ડ જરૂરી છે.",
 }
 
@@ -616,6 +649,7 @@ TRANSLATIONS["pa"] = {
     "WELCOME_BACK": "ਵਾਪਸ ਸਵਾਗਤ ਹੈ", "INVALID_LOGIN": "ਫੋਨ ਨੰਬਰ ਜਾਂ ਪਾਸਵਰਡ ਗਲਤ ਹੈ।", "PHONE_IN_USE": "ਉਹ ਫੋਨ ਨੰਬਰ ਪਹਿਲਾਂ ਹੀ ਰਜਿਸਟਰਡ ਹੈ।",
     "REGISTRATION_SUCCESS": "ਖਾਤਾ ਬਣਾਇਆ ਗਿਆ!", "SK_EMBROIDERY": "ਕਢਾਈ", "SK_TAILORING": "ਸਿਲਾਈ", "SK_CARPENTRY": "ਤਰਖਾਣੀ",
     "SK_PLUMBING": "ਪਲੰਬਿੰਗ", "SK_ELECTRICAL": "ਇਲੈਕਟ੍ਰੀਕਲ", "SK_PAINTING": "ਪੇਂਟਿੰਗ", "SK_CATERING": "ਕੇਟਰਿੰਗ ਮਦਦ",
+    "SK_OTHER": "ਹੋਰ ਹੁਨਰ",
     "REQUIRED_FIELD": "ਇਹ ਖੇਤਰ ਲੋੜੀਂਦਾ ਹੈ।",
 }
 
@@ -651,6 +685,7 @@ TRANSLATIONS["ur"] = {
     "WELCOME_BACK": "واپسی پر خوش آمدید", "INVALID_LOGIN": "فون نمبر یا پاس ورڈ غلط ہے۔", "PHONE_IN_USE": "یہ فون نمبر پہلے سے رجسٹرڈ ہے۔",
     "REGISTRATION_SUCCESS": "اکاؤنٹ بن گیا!", "SK_EMBROIDERY": "کڑھائی", "SK_TAILORING": "درزی کا کام", "SK_CARPENTRY": "بڑھئی کا کام",
     "SK_PLUMBING": "پلمبنگ", "SK_ELECTRICAL": "الیکٹریکل", "SK_PAINTING": "پینٹنگ", "SK_CATERING": "کیٹرنگ مدد",
+    "SK_OTHER": "دیگر مہارت",
     "REQUIRED_FIELD": "یہ خانہ لازمی ہے۔",
 }
 
