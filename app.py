@@ -118,9 +118,6 @@ def init_db():
 # --------------------------------------------------------------------------
 @app.before_request
 def ensure_language_selected():
-    # Every route except the language picker and static files requires a
-    # language to already be set in the session -- this is what "locks"
-    # the app to one language before anything else (including login) shows.
     exempt = {"select_language", "static"}
     if request.endpoint in exempt or request.endpoint is None:
         return
@@ -189,7 +186,6 @@ def select_language():
 
 @app.route("/change-language", methods=["GET", "POST"])
 def change_language():
-    # Reachable from Edit Profile / dashboards; re-uses the same picker.
     return redirect(url_for("select_language", next=request.referrer or url_for("landing")))
 
 
@@ -253,6 +249,11 @@ def register_worker():
         password = request.form.get("password", "")
         area = request.form.get("area", "").strip()
         skills = request.form.getlist("skills")
+        other_skill_text = request.form.get("other_skill_text", "").strip()
+        if "other" in skills:
+            skills = [s for s in skills if s != "other"]
+            if other_skill_text:
+                skills.append(other_skill_text)
         about = request.form.get("about", "").strip()
         day_rate = request.form.get("day_rate") or None
         piece_rate = request.form.get("piece_rate") or None
@@ -336,6 +337,10 @@ def post_job():
     if request.method == "POST":
         db = get_db()
         skill = request.form.get("skill")
+        if skill == "other":
+            other_text = request.form.get("other_skill_text", "").strip()
+            if other_text:
+                skill = other_text
         area = request.form.get("area", "").strip()
         price_type = request.form.get("price_type")
         duration = request.form.get("duration", "").strip()
@@ -435,7 +440,6 @@ def complete_job(job_id):
             "UPDATE worker_profiles SET completed_jobs = completed_jobs + 1 WHERE user_id = ?",
             (job["worker_id"],),
         )
-        # Optional rating from the owner, submitted in the same step
         stars = request.form.get("stars") if request.form.get("action") != "skip" else None
         if stars:
             dispute = 1 if request.form.get("dispute") else 0
@@ -576,6 +580,11 @@ def edit_profile():
     if request.method == "POST":
         area = request.form.get("area", "").strip()
         skills = request.form.getlist("skills")
+        other_skill_text = request.form.get("other_skill_text", "").strip()
+        if "other" in skills:
+            skills = [s for s in skills if s != "other"]
+            if other_skill_text:
+                skills.append(other_skill_text)
         about = request.form.get("about", "").strip()
         day_rate = request.form.get("day_rate") or None
         piece_rate = request.form.get("piece_rate") or None
