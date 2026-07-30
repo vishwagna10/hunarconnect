@@ -13,9 +13,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "hunarconnect.db")
 
 SKILL_KEYS = ["SK_EMBROIDERY", "SK_TAILORING", "SK_CARPENTRY", "SK_PLUMBING",
-              "SK_ELECTRICAL", "SK_PAINTING", "SK_CATERING"]
+              "SK_ELECTRICAL", "SK_PAINTING", "SK_CATERING", "SK_OTHER"]
 SKILL_SLUGS = ["embroidery", "tailoring", "carpentry", "plumbing",
-               "electrical", "painting", "catering"]
+               "electrical", "painting", "catering", "other"]
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("HUNARCONNECT_SECRET", "dev-secret-change-me")
