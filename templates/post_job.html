@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>{{ _('POST_A_JOB') }}</h1>
-
 <form method="POST" data-persist-key="post_job" class="card">
   <label>{{ _('SKILL_NEEDED') }}</label>
-  <select name="skill" required>
+  <select name="skill" id="skill_select" required onchange="document.getElementById('other_skill_row').style.display = (this.value === 'other') ? 'block' : 'none';">
     {% for slug, key in skill_list %}
     <option value="{{ slug }}">{{ _(key) }}</option>
     {% endfor %}
   </select>
-
+  <div id="other_skill_row" style="display:none;">
+    <label>{{ _('SK_OTHER') }}</label>
+    <input type="text" name="other_skill_text" placeholder="{{ _('SK_OTHER') }}">
+  </div>
   <label>{{ _('AREA_LOCALITY') }}</label>
   <input type="text" name="area" required>
-
   <label>{{ _('PRICE_TYPE') }}</label>
   <select name="price_type" required>
     <option value="day">{{ _('PER_DAY') }}</option>
     <option value="piece">{{ _('PER_PIECE') }}</option>
   </select>
-
   <label>{{ _('DURATION_OR_QUANTITY') }}</label>
   <input type="text" name="duration" required>
-
   <label class="checkbox-inline">
     <input type="checkbox" name="trial" value="1">
     {{ _('START_WITH_TRIAL') }}
   </label>
-
   <button type="submit" class="btn btn-secondary btn-block">{{ _('POST_JOB') }}</button>
 </form>
 {% endblock %}
+
